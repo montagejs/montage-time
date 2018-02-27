@@ -32,11 +32,15 @@
   left: -1px;
   right: -1px;
   bottom: -1px;
-  border: 1px solid var(--primary--3);
+  border: 1px solid black;
 }
 
 .CalendarWidgetDay-today .CalendarWidgetDay-date {
   color: var(--white);
+}
+
+.CalendarWidgetDay-selected {
+  background-color: rgba(132,183,255,.35);
 }
 
 .CalendarWidgetDay-content {

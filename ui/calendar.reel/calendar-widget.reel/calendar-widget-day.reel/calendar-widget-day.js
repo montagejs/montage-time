@@ -72,6 +72,7 @@ exports.CalendarWidgetDay = Component.specialize({
         value: function(isFirstTime) {
             this.super();
             if (isFirstTime) {
+                this.element.addEventListener("click", this.handleClick.bind(this));
                 this.addRangeAtPathChangeListener("taskCategories", this, "_filterDistinctTasks");
                 this.addRangeAtPathChangeListener("tasks", this, "_filterDistinctTasks");
                 window.addEventListener("resize", this, false);
@@ -131,6 +132,14 @@ exports.CalendarWidgetDay = Component.specialize({
     shouldAcceptComponent: {
         value: function() {
             return this.data.isCurrentMonth;
+        }
+    },
+
+    handleClick: {
+        value: function () {
+            if (this.data.isCurrentMonth) {
+                this.selectedDay = this.data;
+            }
         }
     }
 });
