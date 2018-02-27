@@ -1,0 +1,18 @@
+{
+  "name": "montage-time",
+  "version": "0.0.1",
+  "description": "Resources to implement time-related features with montage and custom elements.",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+      "montage": "montagejs/montage",
+      "digit": "montagejs/digit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/montagejs/montage-time.git"
+  },
+  "bugs": {
+    "url": "https://github.com/montagejs/montage-time/issues"
+  },
+  "homepage": "https://github.com/montagejs/montage-time#readme"
+}
