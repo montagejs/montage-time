@@ -2,6 +2,7 @@
 <html>
 <head>
     <title></title>
+    <link rel="stylesheet" type="text/css" href="calendar.css">
     <script type="text/montage-serialization">
     {
         "owner": {
@@ -9,13 +10,38 @@
                 "element": {"#": "owner"}
             }
         },
-        "cascadingList": {
-            "prototype": "ui/controls/cascading-list.reel",
+        "calendarWidget": {
+            "prototype": "./calendar-widget.reel",
             "properties": {
-                "element": {"#": "cascadingList"}
+                "element": {"#": "calendarWidget"}
             },
             "bindings": {
-                "root": {"<-": "@owner.calendar"}
+                "object": {"<-": "@owner.object"},
+                "taskCategories": {"<-": "@owner.taskCategories"},
+                "selectedPeriod": {"<->": "@owner.selectedPeriod"},
+                "selectedTask": {"<->": "@owner.selectedObject"},
+                "selectedDay": {"<->": "@owner.selectedDay"}
+            }
+        },
+        "list": {
+            "prototype": "./calendar-list.reel",
+            "properties": {
+                "element": {"#": "list"}
+            },
+            "bindings": {
+                "taskCategories": {"<-": "@owner.taskCategories"},
+                "days": {"<-": "@calendarWidget.days"},
+                "selectedTask": {"<->": "@owner.selectedObject"},
+                "selectedDay": {"<->": "@owner.selectedDay"}
+            }
+        },
+        "GMT": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "GMT"}
+            },
+            "bindings": {
+                "value": {"<-": "'GMT' + @owner.object._gmtOffset"}
             }
         }
     }
@@ -23,7 +49,16 @@
 </head>
 <body>
     <div data-montage-id="owner" class="Calendar">
-        <div data-montage-id="cascadingList"></div>
+        <div class="Calendar-wrapper">
+            <div data-montage-id="calendarWidget" class="Calendar-calendarWidget"></div>
+            <div class="Calendar-events">
+                <div class="Calendar-events-header flex-row g-margin-top flex-align--baseline">
+                    <h2 class="g-margin-right--half">Agenda</h2>
+                    <span data-montage-id="GMT" class="small"></span>
+                </div>
+                <div data-montage-id="list" class="Calendar-eventsList"></div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
