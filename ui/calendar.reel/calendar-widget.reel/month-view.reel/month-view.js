@@ -113,6 +113,7 @@ exports.MonthView = Component.specialize(/** @lends MonthView# */ {
                 weeks = [],
                 dayDate,
                 today = new Date(),
+                day,
                 week,
                 i, j;
 
@@ -128,7 +129,7 @@ exports.MonthView = Component.specialize(/** @lends MonthView# */ {
                 week = [];
                 for (j = 1; j <= 7; j++) {
                     dayDate = new Date(year, month, i + j);
-                    week.push({
+                    day = {
                         year: dayDate.getFullYear(),
                         month: dayDate.getMonth(),
                         date: dayDate.getDate(),
@@ -139,7 +140,11 @@ exports.MonthView = Component.specialize(/** @lends MonthView# */ {
                             (dayDate.getFullYear() === today.getFullYear()) &&
                             (dayDate.getMonth() === today.getMonth()),
                         rawDate: dayDate
-                    });
+                    }
+                    week.push(day);
+                    if (day.isToday) {
+                        this.selectedDay = day;
+                    }
                 }
                 weeks.push(week);
                 i += 7;
