@@ -64,10 +64,10 @@ exports.MonthView = Component.specialize(/** @lends MonthView# */ {
         }
     },
 
-    enterDocument: {
-        value: function() {
+    templateDidLoad: {
+        value: function () {
             this.gotoToday();
-        }  
+        }
     },
 
     gotoPrevious: {
@@ -89,12 +89,6 @@ exports.MonthView = Component.specialize(/** @lends MonthView# */ {
     gotoNext: {
         value: function() {
             this._currentPeriod.setMonth(this._currentPeriod.getMonth()+1);
-            this._updateCalendar();
-        }
-    },
-
-    willDraw: {
-        value: function () {
             this._updateCalendar();
         }
     },
