@@ -7,7 +7,6 @@
   width: 14.2857%;
   border-right: 1px solid var(--calendar-line--strong);
   border-top: 1px solid var(--calendar-line--strong);
-  font-size: 0.8em;
 }
 .CalendarWidgetDay.show-more {
   z-index: 2;
@@ -19,7 +18,6 @@
 }
 
 .CalendarWidgetDay-date {
-  text-align: right;
 }
 
 .CalendarWidgetDay-today {
