@@ -13,6 +13,41 @@
                 "days": {"<-": "@owner.weeks.flatten().filter{isCurrentMonth}"}
             }
         },
+        "gotoPrevious": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "gotoPrevious"},
+                "label": "<"
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "gotoNext": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "gotoNext"},
+                "label": ">"
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "monthTitle": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "monthTitle"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.monthTitle"}
+            }
+        },
         "weekRepetition": {
             "prototype": "montage/ui/repetition.reel",
             "properties": {
@@ -66,6 +101,11 @@
 </head>
 <body>
     <div data-montage-id="owner" class="MonthView">
+        <div class="MonthView-header">
+            <div data-montage-id="gotoPrevious" class="MonthView-gotoButton"></div>
+            <div data-montage-id="monthTitle" class="MonthView-title"></div>
+            <div data-montage-id="gotoNext" class="MonthView-gotoButton"></div>
+        </div>
         <table>
             <thead>
                 <tr data-montage-id="daysOfTheWeek">
