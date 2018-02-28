@@ -70,26 +70,48 @@ exports.MonthView = Component.specialize(/** @lends MonthView# */ {
         }
     },
 
+    handleGotoPreviousAction: {
+        value: function () {
+            this.gotoPrevious();
+        }
+    },
+
+    handleGotoNextAction: {
+        value: function () {
+            this.gotoNext();
+        }
+    },
+
+    setMonth: {
+        value: function (monthIndex) {
+            if (this._currentPeriod && this._currentPeriod.getMonth() === monthIndex) {
+                return;
+            }
+            if (!this._currentPeriod) {
+                this._currentPeriod = new Date();
+                this._currentPeriod.setDate(1);
+            }
+            this.monthTitle = MONTHS[monthIndex];
+            this._currentPeriod.setMonth(monthIndex);
+            this._updateCalendar();
+        }
+    },
+
     gotoPrevious: {
         value: function() {
-            this._currentPeriod.setMonth(this._currentPeriod.getMonth()-1);
-            this._updateCalendar();
+            this.setMonth(this._currentPeriod.getMonth() - 1);
         }
     },
 
     gotoToday: {
         value: function() {
-            var currentPeriod = new Date();
-            currentPeriod.setDate(1);
-            this._currentPeriod = currentPeriod;
-            this._updateCalendar();
+            this.setMonth(new Date().getMonth());
         }
     },
 
     gotoNext: {
         value: function() {
-            this._currentPeriod.setMonth(this._currentPeriod.getMonth()+1);
-            this._updateCalendar();
+            this.setMonth(this._currentPeriod.getMonth() + 1);
         }
     },
 
